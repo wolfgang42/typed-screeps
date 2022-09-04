@@ -8,7 +8,7 @@
     "dist/index.d.ts"
   ],
   "scripts": {
-    "compile:dtslint": "node ./build/concat.js && node ./build/prependHeader.js",
+    "compile:dtslint": "node ./build/concat.js && node ./build/prependHeader.js && sh -c 'echo } >> dist/index.d.ts' && sed -i -E 's/declare (const|var|class|namespace)/\\1/g' dist/index.d.ts",
     "compile": "npm run compile:dtslint && node ./build/prependDescription.js",
     "dtslint": "npm run compile:dtslint && dtslint dist",
     "format": "npm run format:build && npm run format:src",
@@ -17,7 +17,7 @@
     "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "lint:test": "tslint -p dist/tsconfig.json 'dist/screeps-tests.ts'",
     "pre-commit": "npm run compile && git add dist/index.d.ts",
-    "prepare": "husky install && npm test",
+    "prepare": "husky install",
     "test": "npm run dtslint"
   },
   "keywords": [

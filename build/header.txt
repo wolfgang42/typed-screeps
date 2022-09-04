@@ -11,3 +11,5 @@
 // TypeScript Version: 4.6
 
 // Please contribute types to https://github.com/screepers/typed-screeps
+
+declare module 'typed-screeps' {
